@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,6 +22,27 @@ Route::get('/', function () {
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+/**
+ * User's Restful API
+ */
+Route::resource('user', 'UserController');
+
+Route::resource('user', 'UserController', ['only' => [
+    'store'
+]]);
+
+Route::resource('user', 'UserController', ['except' => [
+    'index', 'show', 'create', 'update', 'destroy'
+]]);
+
+/**
+ * Middleware Group
+ */
+
 Route::group(['middleware' => ['web']], function () {
-    //
+    // TODO: pending implementation of middleware
 });
